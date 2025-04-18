@@ -79,5 +79,11 @@ Key Methods:
 ```
 
 ## 🛠️ Requirements
-- C++11 or later
-- Terminal/console
+- C++17 or later
+- g++ compiler
+- Terminal/console environment
+- make (for using the provided Makefile)
+
+## 🧼 Future Improvements
+- Real Audio playback
+- File saving/loading for persistent playlists
