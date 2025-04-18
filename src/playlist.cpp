@@ -1,4 +1,5 @@
 #include <playlist.hpp>
+#include <utilities.hpp>
 
 // Constructor
 Playlist::Playlist(){
@@ -28,10 +29,15 @@ void Playlist::addSong(const Song& song) {
         newNode->prev = tail;
         tail = newNode;
     }
-    std::cout << "Added: " << song.getTitle() << std::endl;
+
+    current = newNode; 
+    utilities::clearScreen();
+    std::string addingSongMessage = "Added " + song.getTitle() + " to Fav Playlist.";
+    utilities::pressAnyKeyToContinue(addingSongMessage);
 }
 
 void Playlist::removeSong(const std::string& title) {
+    utilities::clearScreen();
     SongNode* temp = head;
 
     while (temp) {
@@ -42,50 +48,74 @@ void Playlist::removeSong(const std::string& title) {
             if (temp->next) temp->next->prev = temp->prev;
             if (current == temp) current = temp->next ? temp->next : temp->prev;
             delete temp;
-            std::cout << "Removed: " << title << std::endl;
+            std::string removedMessagge = "Removed " + title + " from playlist.";
+            utilities::pressAnyKeyToContinue(removedMessagge);
             return;
         }
         temp = temp->next;
     }
-
-    std::cout << "Song not found: " << title << std::endl;
+    std::string NotFoundMessage = "Song not found: " + title;
+    utilities::pressAnyKeyToContinue(NotFoundMessage);
 }
 
 void Playlist::displaySongs() const {
     if (isEmpty()) {
-        std::cout << "Playlist is empty.\n";
+        utilities::pressAnyKeyToContinue("Playlist is empty.");
         return;
     }
 
+    utilities::clearScreen();
+    std::cout << "Songs in Playlist" << std::endl;
     SongNode* temp = head;
     int index = 1;
     while (temp) {
         std::cout << index++ << ". ";
-        temp->song.songDetails();
-        std::cout << "---------------------------\n";
+        std::cout << temp->song.getTitle() << std::endl;
         temp = temp->next;
     }
+    std::cout << "---------------------------" << std::endl;
+}
+
+void Playlist::selectSong(const std::string& title){
+    if (isEmpty()) {
+        utilities::pressAnyKeyToContinue("Playlist is empty.");
+        return;
+    }
+    utilities::clearScreen();
+    SongNode* temp = head;
+    while (temp) {
+        if (temp->song.getTitle() == title) {
+            current = temp;
+            std::string selectedMessage = "Selected: " + title + " as current song.";
+            utilities::pressAnyKeyToContinue(selectedMessage);
+            return;
+        }
+        temp = temp->next;
+    }
+    std::string notFoundMessage = "Song not found: " + title;
+    utilities::pressAnyKeyToContinue(notFoundMessage);
 }
 
 void Playlist::playCurrent() const {
     if (!current) {
-        std::cout << "No song is currently selected.\n";
+        utilities::pressAnyKeyToContinue("No song is currently selected...");
         return;
     }
-
+    utilities::clearScreen();
     current->song.play();
 }
 
 void Playlist::nextSong() {
     if (!current) {
-        std::cout << "Playlist is empty.\n";
+        utilities::pressAnyKeyToContinue("Playlist is empty...");
         return;
     }
 
+    utilities::clearScreen();
     if (current->next) {
         current = current->next;
     } else {
-        std::cout << "You're at the last song.\n";
+        utilities::pressAnyKeyToContinue("You're at the last song.");
     }
 
     playCurrent();
@@ -93,44 +123,15 @@ void Playlist::nextSong() {
 
 void Playlist::previousSong() {
     if (!current) {
-        std::cout << "Playlist is empty.\n";
+        utilities::pressAnyKeyToContinue("Playlist is empty.");
         return;
     }
 
     if (current->prev) {
         current = current->prev;
     } else {
-        std::cout << "You're at the first song.\n";
+        utilities::pressAnyKeyToContinue("You're at the first song.");
     }
 
     playCurrent();
-}
-
-void Playlist::markFavorite(const std::string& title) {
-    SongNode* temp = head;
-    while (temp) {
-        if (temp->song.getTitle() == title) {
-            temp->song.toggleFavorite();
-            std::cout << "Toggled favorite: " << title << std::endl;
-            return;
-        }
-        temp = temp->next;
-    }
-    std::cout << "Song not found.\n";
-}
-
-void Playlist::listFavorites() const {
-    std::cout << "Favorite Songs:\n";
-    SongNode* temp = head;
-    bool found = false;
-    while (temp) {
-        if (temp->song.getIsFavorite()) {
-            std::cout << "Title: " << temp->song.getTitle() << std::endl;
-            std::cout << "---------------------------\n";
-            found = true;
-        }
-        temp = temp->next;
-    }
-
-    if (!found) std::cout << "No favorite songs.\n";
 }

@@ -27,11 +27,10 @@ public:
     void addSong(const Song& song);
     void removeSong(const std::string& title);
     void displaySongs() const;
+    void selectSong(const std::string& title);
     void playCurrent() const;
     void nextSong();
     void previousSong();
-    void markFavorite(const std::string& title);
-    void listFavorites() const;
     bool isEmpty() const;
 };
 

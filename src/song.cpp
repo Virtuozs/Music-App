@@ -1,4 +1,5 @@
 #include <song.hpp>
+#include <utilities.hpp>
 
 // Getter Implementations
 std::string Song::getTitle() const {
@@ -84,16 +85,19 @@ void Song::songDetails() {
 }
 
 void Song::play() {
-    std::cout << "▶️  Now playing: " << title << " by " << artist << std::endl;
+    std::string playedMessage = "▶️  Now playing: " + title + " by " + artist;
+    utilities::pressAnyKeyToContinue(playedMessage);
     // TODO: add audio playback code here
 }
 
 void Song::pause() {
-    std::cout << "⏸️  Paused: " << title << std::endl;
+    std::string pauseMessage =  "⏸️  Paused: " + title;
+    utilities::pressAnyKeyToContinue(pauseMessage);
     // TODO: Add pause logic here
 }
 
 void Song::stop() {
-    std::cout << "⏹️  Stopped: " << title << std::endl;
+    std::string stopMessage = "⏹️  Stopped: " + title;
+    utilities::pressAnyKeyToContinue(stopMessage);
     // TODO: Add stop logic here 
 }

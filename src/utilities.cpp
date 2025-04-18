@@ -17,5 +17,4 @@ void utilities::pressAnyKeyToContinue(const std::string& customMessage){
     }
 
     std::cin.ignore();
-    std::cin.get();
 }
