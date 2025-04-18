@@ -13,10 +13,9 @@ class Song {
         int duration;
         std::string genre;
         std::string filePath;
-        bool isFavorite;
     public:
     Song(std::string title, std::string artist, std::string album, int year, int duration, std::string genre, std::string filePath )
-        : title(title), artist(artist), album(album), year(year), duration(duration), genre(genre), filePath(filePath), isFavorite(false) {}
+        : title(title), artist(artist), album(album), year(year), duration(duration), genre(genre), filePath(filePath) {}
 
     // Getter
     std::string getTitle() const;
@@ -26,7 +25,6 @@ class Song {
     int getDuration() const;
     std::string getGenre() const;
     std::string getFilePath() const;
-    bool getIsFavorite() const;
 
     // Setter
     void setTitle(std::string newTitle);
@@ -36,9 +34,6 @@ class Song {
     void setDuration(int newDuration);
     void setGenre(std::string newGenre);
     void setFilePath(std::string newFilePath);
-    void setIsFavorite(bool newIsFavorite);
-
-    void toggleFavorite();
 
     void songDetails();
 

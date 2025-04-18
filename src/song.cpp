@@ -63,15 +63,7 @@ void Song::setFilePath(std::string newFilePath){
     filePath = newFilePath;
 }
 
-void Song::setIsFavorite(bool newIsFavorite) {
-    isFavorite = newIsFavorite;
-}
-
 // Other Implementations
-
-void Song::toggleFavorite() {
-    isFavorite = !isFavorite;
-}
 
 void Song::songDetails() {
     std::cout << "Title     : " << title << std::endl;
