@@ -10,5 +10,4 @@ class utilities
         static void pressAnyKeyToContinue(const std::string& customMessage);   
 };
 
-
 #endif

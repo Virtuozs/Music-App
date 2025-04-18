@@ -30,10 +30,6 @@ std::string Song::getFilePath() const {
     return filePath;
 }
 
-bool Song::getIsFavorite() const {
-    return isFavorite;
-}
-
 // Setter Implementations
 void Song::setTitle(std::string newTitle){
     title = newTitle;
@@ -73,7 +69,6 @@ void Song::songDetails() {
     std::cout << "Duration  : " << duration << " seconds" << std::endl;
     std::cout << "Genre     : " << genre << std::endl;
     std::cout << "File Path : " << filePath << std::endl;
-    std::cout << "Favorite  : " << (isFavorite ? "Yes" : "No") << std::endl;
 }
 
 void Song::play() {
