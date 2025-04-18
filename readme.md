@@ -21,14 +21,14 @@ This is a dummy terminal-based Music Application built with C++ to better unders
 
 ## 🧠 Classes & Structure
 
-# Song
+### Song
 Represents a song with details like title, artist, and duration.
 
 Key Methods:
 - play() — Simulates playing the song
 - songDetails() — Displays song info
 
-# Playlist
+### Playlist
 Handles one double linked list of songs.
 
 Key Methods:
@@ -40,7 +40,7 @@ Key Methods:
 - displaySongs() — Shows all songs
 - isEmpty() — Checks if playlist is empty
 
-# PlaylistManager
+### PlaylistManager
 Handles multiple playlists with names.
 
 Key Methods:
